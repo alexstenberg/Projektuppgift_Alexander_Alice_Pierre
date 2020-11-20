@@ -91,11 +91,11 @@ namespace Logic.Services
                     TruckComponents = dataAccess.GetData(FileName.TruckComponents);
 
                     if (
-                    component == Component.Bromsar && TruckComponents[component.ToString()] >= 4 ||
-                    component == Component.Däck && TruckComponents[component.ToString()] >= 4)
+                    component == Component.Bromsar && TruckComponents[component.ToString()] >= 6 ||
+                    component == Component.Däck && TruckComponents[component.ToString()] >= 6)
 
                     {
-                        TruckComponents[component.ToString()] -= 4;
+                        TruckComponents[component.ToString()] -= 6;
 
                         await dataAccess.SaveData(TruckComponents, FileName.TruckComponents);
                         return true;
@@ -127,7 +127,7 @@ namespace Logic.Services
                     component == Component.Däck && MotorbikeComponents[component.ToString()] >= 2)
 
                     {
-                        MotorbikeComponents[component.ToString()] -= 4;
+                        MotorbikeComponents[component.ToString()] -= 2;
 
                         await dataAccess.SaveData(MotorbikeComponents, FileName.MotorbikeComponents);
                         return true;
