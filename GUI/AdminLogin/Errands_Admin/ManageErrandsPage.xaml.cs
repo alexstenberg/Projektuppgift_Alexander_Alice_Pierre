@@ -46,7 +46,12 @@ namespace GUI.AdminLoginPage.ErrandsPage_Admin
         private void RemoveErrandButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedErrand = (Errand)ErrandsDataListView.SelectedItem;
-            if (selectedErrand.WorkState == WorkState.Pågående)
+
+            if (selectedErrand == null)
+            {
+                MessageBox.Show(_noSelectionErrand);
+            }
+            else if (selectedErrand.WorkState == WorkState.Pågående)
             {
                 MessageBox.Show(_alreadyPending);
                 return;
@@ -169,7 +174,11 @@ namespace GUI.AdminLoginPage.ErrandsPage_Admin
         {
             var selectedErrand = (Errand)this.ErrandsDataListView.SelectedItem;
 
-            if (selectedErrand.WorkState == WorkState.Pågående)
+            if (selectedErrand == null)
+            {
+                MessageBox.Show(_noSelectionErrand);
+            }
+            else if (selectedErrand.WorkState == WorkState.Pågående)
             {
                 RemoveErrand();
 
