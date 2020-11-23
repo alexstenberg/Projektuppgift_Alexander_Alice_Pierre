@@ -46,13 +46,13 @@ namespace GUI.MechanicLoginPage.MyErrands_Mechanic
             {
                 Errands.AddRange(ManageErrands.GetAllErrands());
 
-                MyErrands = (List<Errand>)Errands.Where(x => x.MechanicId == Mechanic.IdNumber);
+                MyErrands = Errands.Where(x => x.MechanicId == Mechanic.IdNumber).ToList();
 
                 foreach (Errand errand in MyErrands)
                 {
                     if(ShowCurrentErrends)
                     {
-                        if (errand.WorkState.ToString() == "Pågående")
+                        if (errand.WorkState == WorkState.Pågående)
                         {
                             string mechanicInfo = $"{errand.Component} + {errand.ErrandId}";
                             errendsListBox.Items.Add(mechanicInfo);
@@ -60,7 +60,7 @@ namespace GUI.MechanicLoginPage.MyErrands_Mechanic
                     }
                     else
                     {
-                        if (errand.WorkState.ToString() == "Avslutat")
+                        if (errand.WorkState == WorkState.Avslutat)
                         {
                             string mechanicInfo = $"{errand.Component} + {errand.ErrandId}";
                             errendsListBox.Items.Add(mechanicInfo);
@@ -119,6 +119,7 @@ namespace GUI.MechanicLoginPage.MyErrands_Mechanic
             else
             {
                 await ManageErrands.ChangeWorkStateErrand(MyErrands[errendsListBox.SelectedIndex], Errands);
+                await ManageErrands.ChangeWorkStateMechanic(MyErrands[errendsListBox.SelectedIndex]);
             }
 
             UpdateErrendList();
