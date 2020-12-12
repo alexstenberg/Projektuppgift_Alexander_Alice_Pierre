@@ -82,6 +82,7 @@ namespace GUI.MechanicLoginPage.MyExpertise_Mechanic
             }
             else
             {
+                ManageMechanics = new ManageMechanics();
                 MyQualites.Add(UnCheckedQualites[qualitieDropDown.SelectedIndex]);
                 await ManageMechanics.ChangeMechanic(Mechanic.IdNumber.ToString(), MyQualites, ManageMechanics.AllMechanics());
                 UpDatePage();

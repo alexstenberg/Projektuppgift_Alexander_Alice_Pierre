@@ -46,6 +46,13 @@ namespace Logic.DAL
                 }
             }
 
+            if (!File.Exists(path))
+            {
+                List<T> defaultList = new List<T>();
+                return defaultList;
+                
+            }
+            
             jsonString = File.ReadAllText(path);
 
             List<T> getData = JsonSerializer.Deserialize<List<T>>(jsonString);
